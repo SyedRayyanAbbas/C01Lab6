@@ -1,0 +1,20 @@
+# Node.js 
+FROM node:20.0.0-alpine AS backend
+
+# Working directory for frontend
+WORKDIR /app/quirknotes/backend
+
+# Backend package files
+COPY quirknotes/backend/package*.json ./
+
+# Frontend dependencies
+RUN npm install
+
+# Backend source code
+COPY quirknotes/backend ./
+
+# Expose to serve frontend
+EXPOSE 4000
+
+# Backend
+CMD ["npm", "start"]
